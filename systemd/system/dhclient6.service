@@ -1,0 +1,12 @@
+[Unit]
+Description=Run DHClient6
+After=network.target
+
+# sleep 2 fixes debian dhclient6 bug
+[Service]
+Type=oneshot
+ExecStartPre=/bin/sleep 2
+ExecStart=/etc/dhcp/dhclient6.sh
+
+[Install]
+WantedBy=multi-user.target

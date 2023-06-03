@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ $reason = BOUND6 ]
+then
+        ip -6 addr del $new_ip6_address/128 dev $interface >/dev/null 2>&1 || true
+        ip -6 addr add $new_ip6_address/64 dev $interface >/dev/null 2>&1 || true
+        ip -6 route add default via $new_dhcp6_next_hop dev $interface 2>/dev/null || true
+fi
